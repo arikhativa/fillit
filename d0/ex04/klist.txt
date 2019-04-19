@@ -1,0 +1,7 @@
+Credentials cache: API:D7539A51-F6D8-4AE0-99B9-44962B657F1E
+        Principal: yrabby@42.FR
+
+  Issued                Expires               Principal
+Feb  6 16:54:43 2019  Feb 13 16:54:43 2019  krbtgt/42.FR@42.FR
+Feb  6 16:54:45 2019  Feb 13 16:54:43 2019  ldap/ldap-proxy.42.fr@42.FR
+Feb  6 16:54:45 2019  Feb 13 16:54:43 2019  HTTP/student-storage-1.42.fr@42.FR
