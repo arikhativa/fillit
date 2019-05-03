@@ -6,7 +6,7 @@
 #    By: yrabby <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/02 15:48:51 by yrabby            #+#    #+#              #
-#    Updated: 2019/04/30 14:34:26 by yrabby           ###   ########.fr        #
+#    Updated: 2019/05/03 14:04:26 by yrabby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,6 @@ SRC = ft_atoi.c \
 	  ft_isdigit.c \
 	  ft_isprint.c \
 	  ft_itoa.c \
-	  ft_lstadd.c \
-	  ft_lstnew.c \
 	  ft_memalloc.c \
 	  ft_memccpy.c \
 	  ft_memcpy.c \
@@ -69,6 +67,7 @@ SRC = ft_atoi.c \
 	  ft_lstdel.c \
 	  ft_lstdelone.c \
 	  ft_lstadd.c \
+	  ft_lstnew.c \
 	  ft_lstiter.c \
 	  ft_lstmap.c \
 	  ft_intcount.c \
@@ -79,24 +78,41 @@ SRC = ft_atoi.c \
 
 OBJ = $(SRC:.c=.o)
 
+OBJ_DIR = objs
+
+SRC_DIR = srcs
+
+SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
+
+OBJS = $(addprefix $(OBJ_DIR)/, $(OBJ))
+
 CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
-HED = libft.h
-
-all: $(NAME)
+HEDER = -I includes
 
 .PHONY: clean fclean re all
 
-.PRECIOUS: $(SRC) $(HED) author
+.PRECIOUS: $(SRC) $(SRCS) $(SRC_DIR) author
 
-$(NAME): $(OBJ) Makefile libft.h
-		@ar rv $(NAME) $(OBJ)
-		@ranlib $(NAME)
+.SUFFIXES: .c .o
+
+all: $(NAME)
+
+$(OBJ):
+
+$(OBJS): $(SRCS)
+		$(CC) $(CFLAGS) -c $(SRCS) $(HEDER) ;
+		/bin/mkdir -p $(OBJ_DIR) ;
+		/bin/mv $(OBJ) $(OBJ_DIR)/
+
+$(NAME): $(OBJS)
+		ar rv $@ $(OBJS)
+		ranlib $@
 
 clean: 
-		@/bin/rm -f $(OBJ)
+		@/bin/rm -rf $(OBJ_DIR)
 
 fclean: clean
 		@/bin/rm -f $(NAME)
