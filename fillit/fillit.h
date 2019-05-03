@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/30 15:39:49 by yrabby            #+#    #+#             */
-/*   Updated: 2019/04/30 15:42:48 by yrabby           ###   ########.fr       */
+/*   Created: 2019/04/30 15:34:48 by yrabby            #+#    #+#             */
+/*   Updated: 2019/05/03 19:12:22 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#ifndef FILLIT_H
+# define FILLIT_H
 
-int		main(int ac, char **av)
+# include <stdlib.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include "libft.h"
+# include "get_next_line.h"
+
+typedef struct	s_point
 {
-	if (ac != 2)
-	{
-		write(1, "usage - pls 1 arg\n", 19);
-	}
-	return (0);
-}
+	int		x;
+	int		y;
+}				point;
+
+int				shape_id(point p1, point p2, point p3, point p4)
+
+
+
+#endif

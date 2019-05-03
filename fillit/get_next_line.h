@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/30 15:34:48 by yrabby            #+#    #+#             */
-/*   Updated: 2019/04/30 15:50:10 by yrabby           ###   ########.fr       */
+/*   Created: 2019/04/18 12:00:57 by yrabby            #+#    #+#             */
+/*   Updated: 2019/05/03 14:17:10 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
-
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# define BUFF_SIZE 1
+# include "libft.h"
 # include <stdlib.h>
-# include <fcntl.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
-# include "libft.h"
+# include <fcntl.h>
+
+int		get_next_line(const int fd, char **line);
+int		ft_make_line(int fd, char **line, char **sstr, int ok);
 
 #endif
