@@ -6,7 +6,7 @@
 #    By: yrabby <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/30 14:57:41 by yrabby            #+#    #+#              #
-#    Updated: 2019/05/03 19:12:45 by yrabby           ###   ########.fr        #
+#    Updated: 2019/05/03 19:36:26 by yrabby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(NAME): Makefile $(HED)
+$(NAME): Makefile $(HED) $(SRC)
 		@$(CC) $(CFLAGS) $(LIB) $(SRC) -o $@
 
 clean: fclean

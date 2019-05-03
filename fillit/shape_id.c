@@ -20,7 +20,7 @@ int		shape_id(point p1, point p2, point p3, point p4)
 		return (2);
 	if (x == -1)
 		return (3);
-	if ((sumx == 4 || sumx == 8) && sumy == (2 * p1.y) + 2(p1.y + 1) && x == 1 && y == 2)
+	if ((sumx == 4 || sumx == 8) && sumy == (2 * p1.y) + (2 *(p1.y + 1)) && x == 1 && y == 2)
 		return (4);
 	if ((sumx == 4 || sumx == 8) && sumy == 2 + (4 * p1.y) && x == 0 && y == 1)
 		return (5);
@@ -46,9 +46,9 @@ int		shape_id(point p1, point p2, point p3, point p4)
 		return (15);
 	if ((sumx == 5 || sumx == 9) && sumy == (2 * p1.y) + (2 * (p1.y + 1)) && x == 0 && y == 1)
 		return (16);
-	if ((sumx == 3 || sumx == 7) && sumy == (2 * p1.y) + (2 * (p1.y + 1) && x == 1 && y == 1)
+	if ((sumx == 3 || sumx == 7) && sumy == (2 * p1.y) + (2 * (p1.y + 1)) && x == 1 && y == 1)
 		return (17);
-	if ((sumx == 2 || sumx == 10 || sumx == 6) && sumy == (2 * p1.y) + (2 * (p1.y + 1) && x == 1 && y == 1)
+	if ((sumx == 2 || sumx == 10 || sumx == 6) && sumy == (2 * p1.y) + (2 * (p1.y + 1)) && x == 1 && y == 1)
 		return (18);
-
+	return (-1);
 }
