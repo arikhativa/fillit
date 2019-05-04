@@ -1,54 +1,85 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shape_id.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/04 11:34:33 by yrabby            #+#    #+#             */
+/*   Updated: 2019/05/04 11:36:07 by yrabby           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fillit.h"
 
-int		shape_id(point p1, point p2, point p3, point p4)
+static int		if_p1x_not_zero(point p1, point p2, point p3, point p4)
 {
-	int sumx;
-	int sumy;
-	int x;
-	int y;
-
-	x = p4.x - p1.x;
-	y = p4.y - p1.y;
-	sumx = p1.x + p2.x + p3.x + p4.x;
-	sumy = p1.y + p2.y + p3.y + p4.y;
-	if (sumx == 6 && sumy == (4 * p1.y))
-		return (0);
-	if (sumx == (4 * p1.x) && sumy == 7)
-		return (1);
-	if (sumx == 2 + (4 * p1.x) && (sumy == 8 || sumy == 12) && x == 1 && y == 2)
-		return (2);
-	if (x == -1)
+	if (p1.y == 1 && p2.x == 0 && p2.y == 2 && p3.x == 1 && p3.y == 2
+			&& p4.x == 0 && p4.y == 3)
 		return (3);
-	if ((sumx == 4 || sumx == 8) && sumy == (2 * p1.y) + (2 *(p1.y + 1)) && x == 1 && y == 2)
-		return (4);
-	if ((sumx == 4 || sumx == 8) && sumy == 2 + (4 * p1.y) && x == 0 && y == 1)
+	if (p1.y == 1 && p2.x == 2 && p2.y == 1 && p3.x == 0 && p3.y == 2
+			&& p4.x == 1 && p4.y == 2)
 		return (5);
-	if ((sumx == 4 || sumx == 8) && sumy == p1.y + (3 * (p1.y + 1)))
+	if (p1.y == 1 && p2.x == 0 && p2.y == 2 && p3.x == 1 && p3.y == 2
+			&& p4.x == 2 && p4.y == 2)
 		return (6);
-	if ((sumx == 4 || sumx == 8) && sumy == (p1.y + 1) + (3 * p1.y))
-		return (7);
-	if (sumx == (3 * p1.x) + (p1.x - 1) && (sumy == 8 || sumy == 12))
+	if (p1.y == 1 && p2.x == 0 && p2.y == 2 && p3.x == 1 && p3.y == 2
+			&& p4.x == 1 && p4.y == 3)
 		return (8);
-	if (sumx == (3 * p1.x) + (p1.x + 1) && (sumy == 12 || sumy == 8))
-		return (9);
-	if (sumx == (3 * p1.x) + (p1.x + 1) && (sumy == 11 || sumy == 9) && x == 0 && y == 2)
-		return (10);
-	if (sumx == (3 * p1.x + 1) + p1.x && (sumy == 7 || sumy == 11) && x == 1 && y == 2)
-		return (11);
-	if (sumx == (3 * p1.x) + (p1.x + 1) && (sumy == 9 || sumy == 13) && x == 1 && y == 2)
-		return (12);
-	if (sumx == (3 * p1.x) + (p1.x - 1) && (sumy == 7 || sumy == 13) && x == 0 && y == 2)
+	if (p1.y == 1 && p2.x == 1 && p2.y == 2 && p3.x == 0 && p3.y == 3
+			&& p4.x == 1 && p4.y == 3)
 		return (13);
-	if ((sumx == 5 || sumx == 9) && sumy == (3 * p1.y) + (p1.y + 1) && x == 2 && y == 1)
-		return (14);
-	if ((sumx == 3 || sumx == 7) && sumy == (3 * p1.y) + (p1.y + 1) && x == 0 && y == 1)
-		return (15);
-	if ((sumx == 5 || sumx == 9) && sumy == (2 * p1.y) + (2 * (p1.y + 1)) && x == 0 && y == 1)
+	if (p1.y == 1 && p2.x == 0 && p2.y == 2 && p3.x == 1 && p3.y == 2
+			&& p4.x == 2 && p4.y == 2)
 		return (16);
-	if ((sumx == 3 || sumx == 7) && sumy == (2 * p1.y) + (2 * (p1.y + 1)) && x == 1 && y == 1)
-		return (17);
-	if ((sumx == 2 || sumx == 10 || sumx == 6) && sumy == (2 * p1.y) + (2 * (p1.y + 1)) && x == 1 && y == 1)
-		return (18);
 	return (-1);
+}
+
+static int		shape_l(point p1, point p2, point p3, point p4)
+{
+	if (p2.x == 1 && p2.y == 1 && p3.x == 0 &&
+			p3.y == 2 && p4.x == 0 && p4.y == 3)
+		return (10);
+	if (p2.x == 1 && p2.y == 1 && p3.x == 1 &&
+			p3.y == 2 && p4.x == 1 && p4.y == 3)
+		return (11);
+	if (p2.x == 0 && p2.y == 2 && p3.x == 0 &&
+			p3.y == 2 && p4.x == 1 && p4.y == 3)
+		return (12);
+	if (p2.x == 1 && p2.y == 1 && p3.x == 2 &&
+			p3.y == 1 && p4.x == 2 && p4.y == 2)
+		return (14);
+	if (p2.x == 1 && p2.y == 1 && p3.x == 2 &&
+			p3.y == 1 && p4.x == 0 && p4.y == 2)
+		return (15);
+	if (p2.x == 0 && p2.y == 2 && p3.x == 1 &&
+			p3.y == 2 && p4.x == 2 && p4.y == 2)
+		return (17);
+	return (-1);
+}
+
+int				shape_id(point p1, point p2, point p3, point p4)
+{
+	if (p1.x != 0)
+		return (if_p1x_not_zero(p1, p2, p3, p4));
+	if (p2.y == 1 && p3.y == 1 && p4.y == 1)
+		return (0);
+	if (p2.x == 0 && p3.x == 0 && p4.x == 0)
+		return (1);
+	if (p2.x == 0 && p2.y == 2 && p3.x == 1 &&
+			p3.y == 2 && p4.x == 1 && p4.y == 3)
+		return (2);
+	if (p2.x == 1 && p2.y == 1 && p3.x == 1 &&
+			p3.y == 2 && p4.x == 2 && p4.y == 2)
+		return (4);
+	if (p2.x == 1 && p2.y == 1 && p3.x == 2 &&
+			p3.y == 1 && p4.x == 1 && p4.y == 2)
+		return (7);
+	if (p2.x == 0 && p2.y == 2 && p3.x == 1 &&
+			p3.y == 2 && p4.x == 0 && p4.y == 3)
+		return (9);
+	if (p2.x == 1 && p2.y == 1 && p3.x == 0 &&
+			p3.y == 2 && p4.x == 1 && p4.y == 2)
+		return (18);
+	return (shape_l(p1, p2, p3, p4));
 }
