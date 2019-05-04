@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 11:34:33 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/04 11:36:07 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/04 11:37:27 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int		if_p1x_not_zero(point p1, point p2, point p3, point p4)
 	return (-1);
 }
 
-static int		shape_l(point p1, point p2, point p3, point p4)
+static int		shape_l(point p2, point p3, point p4)
 {
 	if (p2.x == 1 && p2.y == 1 && p3.x == 0 &&
 			p3.y == 2 && p4.x == 0 && p4.y == 3)
@@ -81,5 +81,5 @@ int				shape_id(point p1, point p2, point p3, point p4)
 	if (p2.x == 1 && p2.y == 1 && p3.x == 0 &&
 			p3.y == 2 && p4.x == 1 && p4.y == 2)
 		return (18);
-	return (shape_l(p1, p2, p3, p4));
+	return (shape_l(p2, p3, p4));
 }

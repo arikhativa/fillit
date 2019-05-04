@@ -6,7 +6,7 @@
 #    By: yrabby <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/30 14:57:41 by yrabby            #+#    #+#              #
-#    Updated: 2019/05/03 19:36:26 by yrabby           ###   ########.fr        #
+#    Updated: 2019/05/04 12:15:25 by yrabby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = fillit
 
 SRC = main.c \
 	  get_next_line.c \
-	  shape_id.c
+	  shape_id.c \
+	  count_shape.c
 
 HED = fillit.h libft.h get_next_line.h
 
