@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:34:48 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/04 12:16:46 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/04 13:29:33 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@ typedef struct	s_point
 }				point;
 
 int				shape_id(point p1, point p2, point p3, point p4);
-int				count_shapes(int fd, int *shape);
+
+void			count_shapes(int fd, int *shape);
 void			zero_shape(int *shape);
+
+void			check_line_len(char *line);
+void			check_bad_char(char *line);
+void			if_exit(void);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 11:34:33 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/04 11:37:27 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/04 12:41:47 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int		if_p1x_not_zero(point p1, point p2, point p3, point p4)
 	if (p1.y == 1 && p2.x == 2 && p2.y == 1 && p3.x == 0 && p3.y == 2
 			&& p4.x == 1 && p4.y == 2)
 		return (5);
-	if (p1.y == 1 && p2.x == 0 && p2.y == 2 && p3.x == 1 && p3.y == 2
-			&& p4.x == 2 && p4.y == 2)
+	if (p1.x == 1 && p1.y == 1 && p2.x == 0 && p2.y == 2 &&
+			p3.x == 1 && p3.y == 2 && p4.x == 2 && p4.y == 2)
 		return (6);
 	if (p1.y == 1 && p2.x == 0 && p2.y == 2 && p3.x == 1 && p3.y == 2
 			&& p4.x == 1 && p4.y == 3)
@@ -44,7 +44,7 @@ static int		shape_l(point p2, point p3, point p4)
 			p3.y == 2 && p4.x == 1 && p4.y == 3)
 		return (11);
 	if (p2.x == 0 && p2.y == 2 && p3.x == 0 &&
-			p3.y == 2 && p4.x == 1 && p4.y == 3)
+			p3.y == 3 && p4.x == 1 && p4.y == 3)
 		return (12);
 	if (p2.x == 1 && p2.y == 1 && p3.x == 2 &&
 			p3.y == 1 && p4.x == 2 && p4.y == 2)
