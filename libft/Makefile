@@ -6,7 +6,7 @@
 #    By: yrabby <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/02 15:48:51 by yrabby            #+#    #+#              #
-#    Updated: 2019/05/06 13:58:28 by yrabby           ###   ########.fr        #
+#    Updated: 2019/05/06 14:18:06 by yrabby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,15 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 HEDER = -I includes
+
+
+RED = \330[0;31m
+GREEN = \330[0;31m
+YELLOW = \330[0;31m
+BLUE = \330[0;31m
+MAGENTA = \330[0;31m
+CYAN = \330[0;31m
+
 
 .PHONY: clean fclean re all
 
