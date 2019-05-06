@@ -6,11 +6,17 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 12:46:40 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/04 13:25:56 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/06 10:01:00 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+void	check_new_line(char *line)
+{
+	if (line[0] != '\0')
+		if_exit();
+}
 
 void	check_line_len(char *line)
 {

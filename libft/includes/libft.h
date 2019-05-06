@@ -6,15 +6,19 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 14:56:51 by yrabby            #+#    #+#             */
-/*   Updated: 2019/04/25 15:10:06 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/06 12:50:34 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFF_SIZE 1
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <fcntl.h>
 
 typedef	struct	s_list
 {
@@ -87,5 +91,6 @@ int				ft_isprime(unsigned int nbr);
 int				ft_lstlen(t_list *lst);
 int				ft_power(int nbr, int power);
 int				ft_basecnv(char *nbr, int base);
+int				get_next_line(const int fd, char **line);
 
 #endif

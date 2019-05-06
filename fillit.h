@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:34:48 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/04 13:29:33 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/06 12:55:48 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
-# include "libft.h"
-# include "get_next_line.h"
+
+#include "libft/includes/libft.h"
 
 typedef struct	s_point
 {
@@ -29,12 +29,14 @@ typedef struct	s_point
 
 int				shape_id(point p1, point p2, point p3, point p4);
 
-void			count_shapes(int fd, int *shape);
+int				count_shapes(int fd, int *shape);
 void			zero_shape(int *shape);
 
+void			check_new_line(char *line);
 void			check_line_len(char *line);
 void			check_bad_char(char *line);
 void			if_exit(void);
 
+int				square_size(int nbr);
 
 #endif

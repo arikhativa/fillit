@@ -6,11 +6,11 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 12:00:06 by yrabby            #+#    #+#             */
-/*   Updated: 2019/04/26 10:08:19 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/06 12:49:33 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static int	alloc_line(const int fd, char **line, char **str)
 {

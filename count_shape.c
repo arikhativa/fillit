@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 12:12:04 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/04 13:53:06 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/06 10:43:58 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,15 @@ static void		add_point(int *shape, int i, point *p, char *line)
 	}
 }
 
-void			count_shapes(int fd, int *shape)
+int				count_shapes(int fd, int *shape)
 {
+	int		nbr;
 	int		i;
 	char	*line;
+	int		ok;
 	point	p[4];
 
+	nbr = 0;
 	i = 1;
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -93,8 +96,12 @@ void			count_shapes(int fd, int *shape)
 			check_bad_char(line);
 			add_point(shape, i, p, line);
 			i++;
-			get_next_line(fd, &line);
+			ok = get_next_line(fd, &line);
 		}
+		if (ok != 0)
+			check_new_line(line);
 		i = 1;
+		nbr++;
 	}
+	return (nbr);
 }

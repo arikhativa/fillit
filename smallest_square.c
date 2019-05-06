@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   smallest_square.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/18 12:00:57 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/03 14:17:10 by yrabby           ###   ########.fr       */
+/*   Created: 2019/05/06 10:31:01 by yrabby            #+#    #+#             */
+/*   Updated: 2019/05/06 10:49:33 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 1
-# include "libft.h"
-# include <stdlib.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <fcntl.h>
+#include "fillit.h"
 
-int		get_next_line(const int fd, char **line);
-int		ft_make_line(int fd, char **line, char **sstr, int ok);
+static int	sqrt(int nbr)
+{
+	int i;
 
-#endif
+	i = 2;
+	while (i * i <= nbr)
+	{
+		if (i * i == nbr)
+			return (i);
+		i++;
+	}
+	return (i - 1);
+}
+
+int			square_size(int nbr)
+{
+	int size;
+
+	size = sqrt(nbr * 4);
+	return (size);
+}
