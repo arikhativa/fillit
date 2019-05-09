@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:34:48 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/09 16:18:51 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/09 16:30:08 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void			check_new_line(char *line);
 void			check_line_len(char *line);
 void			check_bad_char(char *line);
 void			if_exit(void);
+void			check_file(int fd);
 
 int				square_size(int nbr);
 

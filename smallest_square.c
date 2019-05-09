@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 10:31:01 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/06 10:49:33 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/09 16:21:36 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	sqrt(int nbr)
 			return (i);
 		i++;
 	}
-	return (i - 1);
+	return (-i);
 }
 
 int			square_size(int nbr)
