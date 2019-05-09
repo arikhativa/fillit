@@ -6,7 +6,7 @@
 #    By: yrabby <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/02 15:48:51 by yrabby            #+#    #+#              #
-#    Updated: 2019/05/09 16:13:25 by yrabby           ###   ########.fr        #
+#    Updated: 2019/05/06 14:18:06 by yrabby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,14 +95,12 @@ CFLAGS = -Wall -Werror -Wextra
 HEDER = -I includes
 
 
-RED = \x1b[0;31m
-GREEN = \x1b[0;32m
-BLUE = \x1b[0;34m
-PURPLE = \x1b[0;35m
-CYAN = \x1b[0;36m
-YELLOW = \x1b[1;33m
-RESET = \x1b[0m
-OK = echo "$(GREEN) -- OK$(RESET)"
+RED = \330[0;31m
+GREEN = \330[0;31m
+YELLOW = \330[0;31m
+BLUE = \330[0;31m
+MAGENTA = \330[0;31m
+CYAN = \330[0;31m
 
 
 .PHONY: clean fclean re all
@@ -112,26 +110,20 @@ OK = echo "$(GREEN) -- OK$(RESET)"
 all: $(NAME)
 
 $(OBJ):
-	
+
 $(OBJS): $(SRCS)
-		@echo "$(PURPLE) -- Compiling srcs..."
-		@$(CC) $(CFLAGS) -c $(SRCS) $(HEDER)
-		@$(OK)
-		@/bin/mkdir -p $(OBJ_DIR) 
-		@/bin/mv $(OBJ) $(OBJ_DIR)
+		$(CC) $(CFLAGS) -c $(SRCS) $(HEDER) 
+		/bin/mkdir -p $(OBJ_DIR) 
+		/bin/mv $(OBJ) $(OBJ_DIR)
 
 $(NAME): $(OBJS)
-		@echo "$(PURPLE) -- Makeing libft...$(BLUE)"
-		@ar rv $@ $(OBJS)
-		@$(OK)
-		@ranlib $@
+		ar rv $@ $(OBJS)
+		ranlib $@
 
 clean: 
-		@echo "$(YELLOW) -- Cleaning..."
-		@/bin/rm -rf $(OBJ_DIR)
-		@$(OK)
+		/bin/rm -rf $(OBJ_DIR)
 
 fclean: clean
-		@/bin/rm -f $(NAME)
+		/bin/rm -f $(NAME)
 
 re: fclean all
