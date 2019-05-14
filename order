@@ -3,9 +3,10 @@
 2) reading and making a list.
 	in the list, each para has 8 points, that shuld be minimayized.
 3) calc the smallest squer.
+	make a tab;
 
-not sure:
 4) try to fit the first elem.
+
 5) if ok then go for the next.
 6) if not - removed the last elem and place it in the next free spot.
 

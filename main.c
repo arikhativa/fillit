@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:39:49 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/14 15:12:46 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/14 16:33:35 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,46 @@
 #include <stdio.h>
 
 
+void	print_tab(char **tab)
+{
+	int s = 0;
+
+	while (tab[s] != NULL)
+	{
+		printf("%s\n", tab[s]);
+		s++;
+	}
+}
+
+void	print_list(t_shape *start)
+{
+	int nbr = 0;
+
+	while (start != NULL)
+	{
+		while (nbr < 4)
+		{
+			printf("%d,%d\n", start->p[nbr].x, start->p[nbr].y);
+			nbr++;
+		}
+		printf("\n");
+		nbr = 0;
+		start = start->next;
+	}
+}
+
+
+
 int			main(int ac, char **av)
 {
 	int		fd;
 	t_shape	*start;
+	char 	**tab;
 	int 	nbr = 0;
+	point	p;
 
+	p.x = 0;
+	p.y = 0;
 	if (ac != 2)
 	{
 		write(1, "usage - pls 1 arg\n", 19);
@@ -41,19 +75,11 @@ int			main(int ac, char **av)
 		start = make_list(fd);
 		nbr = square_size(nbr);
 
-
-		nbr = 0;
-		while (start != NULL)
-		{
-			while (nbr < 4)
-			{
-				printf("%d,%d\n", start->p[nbr].x, start->p[nbr].y);
-				nbr++;
-			}
-			printf("\n");
-			nbr = 0;
-			start = start->next;
-		}
+		tab = make_square(nbr);
+		add_shape(start, 'A', tab, nbr, p);
+			nbr++;
+		print_list(start);
+		print_tab(tab);
 	}
 	return (0);
 }
