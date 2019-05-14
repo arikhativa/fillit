@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 12:46:40 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/10 12:08:36 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/14 15:04:17 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ int		check_file(int fd)
 
 	i = 0;
 	count = 1;
-	ok = get_next_line(fd, &line);
-	while (ok > 0)
+	while ((ok = get_next_line(fd, &line)) > 0)
 	{
 		while (i++ < 4)
 		{
@@ -72,5 +71,6 @@ int		check_file(int fd)
 		if (ok != 0)
 			check_new_line(line);
 	}
+	free(line);
 	return (count);
 }
