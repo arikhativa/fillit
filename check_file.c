@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 12:46:40 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/09 16:29:58 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/10 12:08:36 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,15 @@ void	if_exit(void)
 	exit(EXIT_FAILURE);
 }
 
-void	check_file(int fd)
+int		check_file(int fd)
 {
 	char *line;
+	int ok;
 	int i;
+	int count;
 
 	i = 0;
+	count = 1;
 	ok = get_next_line(fd, &line);
 	while (ok > 0)
 	{
@@ -63,9 +66,11 @@ void	check_file(int fd)
 			check_bad_char(line);
 			free(line);
 			ok = get_next_line(fd, &line);
+			count++;
 		}
 		i = 0;
 		if (ok != 0)
 			check_new_line(line);
 	}
+	return (count);
 }

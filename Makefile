@@ -6,13 +6,13 @@
 #    By: yrabby <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/30 14:57:41 by yrabby            #+#    #+#              #
-#    Updated: 2019/05/09 16:18:35 by yrabby           ###   ########.fr        #
+#    Updated: 2019/05/10 11:37:25 by yrabby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SRC = $(addsuffix .c, main shape_id count_shape \
+SRC = $(addsuffix .c, main list \
 	  check_file smallest_square)
 
 HED = fillit.h

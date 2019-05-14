@@ -1,0 +1,99 @@
+
+#include "fillit.h"
+
+#include <stdio.h>
+
+static point		add_point(int x, int y)
+{
+	point		p;
+
+	p.x = x;
+	p.y = y;
+	return (p);
+}
+
+static void		lowest_p(point *p)
+{
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (p[0].x - 1 >= 0 && p[1].x - 1 >= 0
+				&& p[2].x - 1 >= 0 && p[3].x - 1 >= 0)
+		{
+			p[0].x--;
+			p[1].x--;
+			p[2].x--;
+			p[3].x--;
+		}
+		if (p[0].y - 1 >= 0 && p[1].y - 1 >= 0
+				&& p[2].y - 1 >= 0 && p[3].y - 1 >= 0)
+		{
+			p[0].y--;
+			p[1].y--;
+			p[2].y--;
+			p[3].y--;
+		}
+		i++;
+	}
+}
+
+static point		*make_point_arry(int fd)
+{
+	point *p;
+	int y;
+	int n;
+	int x;
+	char	*line;
+
+	y = 0;
+	x = 0;
+	n = 0;
+	if (!(p = (point*)malloc(sizeof(point) * 4)))
+		return (NULL);
+	while ((get_next_line(fd, &line)) > 0)
+	{
+		while (y < 4)
+		{
+			while (line[x])
+			{
+				if (line[x] == '#')
+				{
+					//printf("here");
+					p[n] = add_point(x, y);
+					n++;
+				}
+				x++;
+			}
+			y++;
+			x = 0;
+			get_next_line(fd, &line);
+		}
+	}
+	lowest_p(p);
+	return (p);
+}
+
+t_shape		*make_list(int fd, int nbr)
+{
+	t_shape **start;
+	t_shape *new;
+	int y;
+	int n;
+	int x;
+
+	y = nbr;
+	y = 0;
+	x = 0;
+	n = 0;
+	if (!(start = (t_shape**)malloc(sizeof(t_shape*))))
+		return (NULL);
+	if (!(new = (t_shape*)malloc(sizeof(t_shape))))
+		return (NULL);
+
+	new->p = make_point_arry(fd);
+	new->next = NULL;
+	start = &new;
+	return (new);
+}

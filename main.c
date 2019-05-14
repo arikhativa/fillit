@@ -6,34 +6,21 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:39:49 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/09 17:01:18 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/14 13:30:51 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+
+
 #include <stdio.h>
 
-void	print_shape(int *shape)
-{
-	int i;
-
-	i = 0;
-	while (i < 18)
-	{
-		if (i >= 10)
-			printf(" %d = %d | %d = %d\n", i, shape[i], i + 1, shape[i + 1]);
-		else
-			printf(" %d  = %d | %d  = %d\n", i, shape[i], i + 1, shape[i + 1]);
-		i++;
-		i++;
-	}
-	printf(" %d = %d\n\n", i, shape[i]);
-}
 
 int			main(int ac, char **av)
 {
 	int		fd;
-	int 	shape[19];
+	t_shape	*start;
 	int 	nbr = 0;
 
 	if (ac != 2)
@@ -42,12 +29,21 @@ int			main(int ac, char **av)
 	}
 	else
 	{
-		zero_shape(shape);
 		fd = open(av[1], O_RDONLY);
-		nbr = count_shapes(fd, shape);
+		nbr = check_file(fd);
+		close(fd);
+
+		fd = open(av[1], O_RDONLY);
+		start = make_list(fd, nbr);
+		nbr = square_size(nbr);
 	}
-	nbr = square_size(nbr);
-	printf("%d\n", nbr);
-	//print_shape(shape);
+
+	nbr = 0;
+	printf("x , y\n");
+	while (nbr < 4)
+	{
+		printf("%d,%d\n", start->p[nbr].x, start->p[nbr].y);
+		nbr++;
+	}
 	return (0);
 }
