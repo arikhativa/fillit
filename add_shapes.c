@@ -12,19 +12,9 @@ int		check_empty(t_shape *elem, char **tab, int size, point p)
 	int i;
 
 	i = 0;
-	/*printf("size is %d\n\n", size);
-	printf("elem x,y :\n");
 	while (i < 4)
 	{
-		printf("%d,%d\n", elem->p[i].x, elem->p[i].y);
-		i++;
-	}
-	printf("p is %d,%d\n", p.x, p.y);
-
-	i = 0;*/
-	while (i < 4)
-	{
-		if (elem->p[i].y + p.y > (size - 1) || elem->p[i].x + p.x > (size - 1) || tab[(elem->p[i].y) + p.y][(elem->p[i].x) + p.x] != '.')
+		if (elem->p[i].y + p.y >= (size) || elem->p[i].x + p.x >= (size) || tab[(elem->p[i].y) + p.y][(elem->p[i].x) + p.x] != '.')
 			return (0);
 		i++;
 	}
@@ -33,14 +23,10 @@ int		check_empty(t_shape *elem, char **tab, int size, point p)
 
 void		fillit(t_shape *elem, char **tab, point p, char c)
 {
-	int i;
-
-	i = 0;
-	while (i < 4)
-	{
-		tab[(elem->p[i].y) + p.y][(elem->p[i].x) + p.x] = c;
-		i++;
-	}
+	tab[(elem->p[0].y) + p.y][(elem->p[0].x) + p.x] = c;
+	tab[(elem->p[1].y) + p.y][(elem->p[1].x) + p.x] = c;
+	tab[(elem->p[2].y) + p.y][(elem->p[2].x) + p.x] = c;
+	tab[(elem->p[3].y) + p.y][(elem->p[3].x) + p.x] = c;
 }
 
 int		add_shape(t_shape *elem, char c, char **tab, int size)
@@ -54,9 +40,9 @@ int		add_shape(t_shape *elem, char c, char **tab, int size)
 	if (elem == NULL)
 		return (1);
 	ok = 0;
-	while (p.y < (size - 1) && ok != 1)
+	while (p.y < (size) && ok != 1)
 	{
-		while (p.x < (size - 1) && (ok != 1))
+		while (p.x < (size) && (ok != 1))
 		{
 			if (check_empty(elem, tab, size, p))
 			{
