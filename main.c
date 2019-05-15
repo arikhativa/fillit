@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:39:49 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/14 16:33:35 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/15 11:47:54 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int			main(int ac, char **av)
 	int 	nbr = 0;
 	point	p;
 
+	int i = 0;
+
 	p.x = 0;
 	p.y = 0;
 	if (ac != 2)
@@ -76,9 +78,14 @@ int			main(int ac, char **av)
 		nbr = square_size(nbr);
 
 		tab = make_square(nbr);
-		add_shape(start, 'A', tab, nbr, p);
+		while (!(add_shape(start, 'A', tab, nbr)))
+		{
+			i++;
 			nbr++;
-		print_list(start);
+			free(tab);
+			tab = make_square(nbr);
+		}
+		//print_list(start);
 		print_tab(tab);
 	}
 	return (0);

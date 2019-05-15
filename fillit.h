@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:34:48 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/14 16:20:09 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/15 11:28:37 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ char			**make_square(int size);
 
 int		check_empty(t_shape *elem, char **tab, int size, point p);
 void		fillit(t_shape *elem, char **tab, point p, char c);
-int		add_shape(t_shape *elem, char c, char **tab, int size, point p);
+int		add_shape(t_shape *elem, char c, char **tab, int size);
+
+//del
+void	print_tab(char **tab);
 
 
 #endif
