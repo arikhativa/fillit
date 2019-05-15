@@ -24,7 +24,7 @@ int		check_empty(t_shape *elem, char **tab, int size, point p)
 	i = 0;*/
 	while (i < 4)
 	{
-		if (tab[(elem->p[i].y) + p.y][(elem->p[i].x) + p.x] != '.' || elem->p[i].y + p.y > size || elem->p[i].x + p.x > size)
+		if (elem->p[i].y + p.y > (size - 1) || elem->p[i].x + p.x > (size - 1) || tab[(elem->p[i].y) + p.y][(elem->p[i].x) + p.x] != '.')
 			return (0);
 		i++;
 	}
@@ -43,15 +43,6 @@ void		fillit(t_shape *elem, char **tab, point p, char c)
 	}
 }
 
-void		next_point(int size, point p, point *next)
-{
-	if (p.x < size)
-		next->x = p.x + 1;
-	else if (p.y < size)
-		next->y = p.y + 1;
-		next->x = 0;
-}
-
 int		add_shape(t_shape *elem, char c, char **tab, int size)
 {
 	int 	ok;
@@ -63,15 +54,17 @@ int		add_shape(t_shape *elem, char c, char **tab, int size)
 	if (elem == NULL)
 		return (1);
 	ok = 0;
-	while (tab[p.y] && ok != 1)
+	while (p.y < (size - 1) && ok != 1)
 	{
-		while (tab[p.x] && (ok != 1))
+		while (p.x < (size - 1) && (ok != 1))
 		{
 			if (check_empty(elem, tab, size, p))
 			{
 				fillit(elem, tab, p, c);
 				//print_tab(tab);
 				ok = add_shape(elem->next, c + 1, tab, size);
+				if (!(ok))
+					fillit(elem, tab, p, '.');
 			}
 			p.x++;
 		}
