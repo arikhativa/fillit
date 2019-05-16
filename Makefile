@@ -6,7 +6,7 @@
 #    By: yrabby <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/30 14:57:41 by yrabby            #+#    #+#              #
-#    Updated: 2019/05/14 16:16:06 by yrabby           ###   ########.fr        #
+#    Updated: 2019/05/16 10:25:10 by yrabby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,10 @@ OK = echo "$(GREEN) -- OK$(RESET)"
 
 all: $(NAME)
 
-$(NAME): Makefile $(HED) $(SRC)
+$(LIB):
 		@cd libft; make
+
+$(NAME): Makefile $(HED) $(SRC) $(LIB)
 		@echo " -- Compiling fillit..."
 		@$(CC) $(CFLAGS) $(LIB) $(SRC) $(EHD) $(LIB_HED) -o $(NAME)
 		@$(OK)

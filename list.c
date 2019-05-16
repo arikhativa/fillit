@@ -50,10 +50,9 @@ static point		*make_point_arry(int fd)
 	y = 0;
 	x = 0;
 	n = 0;
-	if (!(p = (point*)malloc(sizeof(point) * 4)))
-		return (NULL);
-
 	if ((get_next_line(fd, &line)) == 0)
+		return (NULL);
+	if (!(p = (point*)malloc(sizeof(point) * 5)))
 		return (NULL);
 	while (y < 4)
 	{
