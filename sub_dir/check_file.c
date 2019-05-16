@@ -6,19 +6,25 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 12:46:40 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/06 10:01:00 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/16 12:23:16 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	check_new_line(char *line)
+static void		if_exit(void)
+{
+	write(1, "error\n", 6);
+	exit(EXIT_FAILURE);
+}
+
+static void		check_new_line(char *line)
 {
 	if (line[0] != '\0')
 		if_exit();
 }
 
-void	check_line_len(char *line)
+static void		check_line_len(char *line)
 {
 	int len;
 
@@ -27,7 +33,7 @@ void	check_line_len(char *line)
 		if_exit();
 }
 
-void	check_bad_char(char *line)
+static void		check_bad_char(char *line)
 {
 	int i;
 
@@ -42,8 +48,29 @@ void	check_bad_char(char *line)
 	}
 }
 
-void	if_exit(void)
+int				check_file(int fd)
 {
-	write(1, "error\n", 6);
-	exit(EXIT_FAILURE);
+	char	*line;
+	int		ok;
+	int		i;
+	int		count;
+
+	i = 0;
+	count = 0;
+	while ((ok = get_next_line(fd, &line)) > 0)
+	{
+		while (i++ < 4)
+		{
+			check_line_len(line);
+			check_bad_char(line);
+			free(line);
+			ok = get_next_line(fd, &line);
+			count++;
+		}
+		i = 0;
+		if (ok != 0)
+			check_new_line(line);
+	}
+	free(line);
+	return (count);
 }

@@ -6,13 +6,14 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 14:56:51 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/06 14:14:53 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/15 12:34:50 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # define BUFF_SIZE 1
+# define MAX_FD 4864
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>

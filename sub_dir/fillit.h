@@ -6,20 +6,16 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:34:48 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/06 12:55:48 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/16 12:33:36 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
-
 # include <stdlib.h>
 # include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
 # include <unistd.h>
-
-#include "libft/includes/libft.h"
+# include "libft.h"
 
 typedef struct	s_point
 {
@@ -27,16 +23,16 @@ typedef struct	s_point
 	int		y;
 }				point;
 
-int				shape_id(point p1, point p2, point p3, point p4);
+typedef struct	shape_list
+{
+	point				*p;
+	struct shape_list	*next;
+}				t_shape;
 
-int				count_shapes(int fd, int *shape);
-void			zero_shape(int *shape);
-
-void			check_new_line(char *line);
-void			check_line_len(char *line);
-void			check_bad_char(char *line);
-void			if_exit(void);
-
+t_shape			*make_list(int fd);
+int				check_file(int fd);
 int				square_size(int nbr);
+char			**make_square(int size);
+int				add_shape(t_shape *elem, char c, char **tab, int size);
 
 #endif

@@ -6,48 +6,58 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:39:49 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/06 10:46:53 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/16 12:21:46 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
-void	print_shape(int *shape)
+static void		print_tab(char **tab)
 {
-	int i;
+	int s;
 
-	i = 0;
-	while (i < 18)
+	s = 0;
+	while (tab[s] != NULL)
 	{
-		if (i >= 10)
-			printf(" %d = %d | %d = %d\n", i, shape[i], i + 1, shape[i + 1]);
-		else
-			printf(" %d  = %d | %d  = %d\n", i, shape[i], i + 1, shape[i + 1]);
-		i++;
-		i++;
+		ft_putstr(tab[s]);
+		ft_putchar('\n');
+		s++;
 	}
-	printf(" %d = %d\n\n", i, shape[i]);
+}
+
+static void		extra_main(t_shape *start, int nbr)
+{
+	char	**tab;
+
+	tab = make_square(nbr);
+	while (!(add_shape(start, 'A', tab, nbr)))
+	{
+		nbr++;
+		free(tab);
+		tab = make_square(nbr);
+	}
+	print_tab(tab);
 }
 
 int			main(int ac, char **av)
 {
 	int		fd;
-	int 	shape[19];
-	int 	nbr = 0;
+	t_shape	*start;
+	int		nbr;
 
+	nbr = 0;
 	if (ac != 2)
-	{
 		write(1, "usage - pls 1 arg\n", 19);
+	else if ((fd = open(av[1], O_RDONLY)) != -1)
+	{
+		nbr = check_file(fd);
+		close(fd);
+		fd = open(av[1], O_RDONLY);
+		start = make_list(fd);
+		nbr = square_size(nbr);
+		extra_main(start, nbr);
 	}
 	else
-	{
-		zero_shape(shape);
-		fd = open(av[1], O_RDONLY);
-		nbr = count_shapes(fd, shape);
-	}
-	nbr = square_size(nbr);
-	printf("%d\n", nbr);
-	//print_shape(shape);
+		write(1, "error\n", 6);
 	return (0);
 }
