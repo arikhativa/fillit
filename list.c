@@ -20,20 +20,24 @@ static void			lowest_p(point *p)
 	while (i < 4)
 	{
 		if (p[0].x - 1 >= 0 && p[1].x - 1 >= 0
-				&& p[2].x - 1 >= 0 && p[3].x - 1 >= 0)
+				&& p[2].x - 1 >= 0 && p[3].x - 1 >= 0
+				&& p[4].x >= 0)
 		{
 			p[0].x--;
 			p[1].x--;
 			p[2].x--;
 			p[3].x--;
+			p[4].x--;
 		}
 		if (p[0].y - 1 >= 0 && p[1].y - 1 >= 0
-				&& p[2].y - 1 >= 0 && p[3].y - 1 >= 0)
+				&& p[2].y - 1 >= 0 && p[3].y - 1 >= 0
+				&& p[4].y >= 0)
 		{
 			p[0].y--;
 			p[1].y--;
 			p[2].y--;
 			p[3].y--;
+			p[4].y--;
 		}
 		i++;
 	}
@@ -54,6 +58,8 @@ static point		*make_point_arry(int fd)
 		return (NULL);
 	if (!(p = (point*)malloc(sizeof(point) * 5)))
 		return (NULL);
+	p[4].x = 0;
+	p[4].y = 0;
 	while (y < 4)
 	{
 		while (line[x])
@@ -61,6 +67,10 @@ static point		*make_point_arry(int fd)
 			if (line[x] == '#')
 			{
 				p[n] = add_point(x, y);
+				if (p[4].x < p[n].x)
+					p[4].x = p[n].x;
+				if (p[4].y < p[n].y)
+					p[4].y = p[n].y;
 				n++;
 			}
 			x++;

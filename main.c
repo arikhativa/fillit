@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:39:49 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/15 16:18:17 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/16 10:35:26 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_list(t_shape *start)
 
 	while (start != NULL)
 	{
-		while (nbr < 4)
+		while (nbr < 5)
 		{
 			printf("%d,%d\n", start->p[nbr].x, start->p[nbr].y);
 			nbr++;
