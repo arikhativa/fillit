@@ -32,25 +32,23 @@ void		fillit(t_shape *elem, char **tab, point p, char c)
 
 int		add_shape(t_shape *elem, char c, char **tab, int size)
 {
-	int 	ok;
 	point	p;
 
-
-	p.x = 0;
-	p.y = 0;
 	if (elem == NULL)
 		return (1);
-	ok = 0;
-	while (p.y < (size) && ok != 1)
+	p.x = 0;
+	p.y = 0;
+	while (p.y < (size))
 	{
-		while (p.x < (size) && (ok != 1))
+		while (p.x < (size))
 		{
 			if (check_empty(elem, tab, size, p))
 			{
 				fillit(elem, tab, p, c);
 				//print_tab(tab);
-				ok = add_shape(elem->next, c + 1, tab, size);
-				if (!(ok))
+				if ((add_shape(elem->next, c + 1, tab, size)))
+					return (1);
+				else
 					fillit(elem, tab, p, '.');
 			}
 			p.x++;
@@ -58,7 +56,5 @@ int		add_shape(t_shape *elem, char c, char **tab, int size)
 		p.x = 0;
 		p.y++;
 	}
-	if (ok == 1)
-		return (1);
 	return (0);
 }
