@@ -6,7 +6,7 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 10:31:01 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/16 12:31:49 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/16 13:22:04 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int				square_size(int nbr)
 
 static char		*make_line(int size)
 {
-	char *line;
-	int n;
+	char	*line;
+	int		n;
 
 	n = 0;
 	if (!(line = (char*)malloc(sizeof(char) * (size + 1))))
@@ -49,8 +49,8 @@ static char		*make_line(int size)
 
 char			**make_square(int size)
 {
-	char **tab;
-	int n;
+	char	**tab;
+	int		n;
 
 	n = 0;
 	if (!(tab = (char**)malloc(sizeof(char*) * (size + 1))))

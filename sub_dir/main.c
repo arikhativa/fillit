@@ -6,13 +6,13 @@
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:39:49 by yrabby            #+#    #+#             */
-/*   Updated: 2019/05/16 12:21:46 by yrabby           ###   ########.fr       */
+/*   Updated: 2019/05/16 14:33:58 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void		print_tab(char **tab)
+void		print_tab(char **tab)
 {
 	int s;
 
@@ -39,7 +39,7 @@ static void		extra_main(t_shape *start, int nbr)
 	print_tab(tab);
 }
 
-int			main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	int		fd;
 	t_shape	*start;
