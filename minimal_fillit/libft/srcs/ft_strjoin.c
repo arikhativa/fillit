@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrabby <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 15:26:02 by yrabby            #+#    #+#             */
-/*   Updated: 2019/04/11 17:01:03 by yrabby           ###   ########.fr       */
+/*   Created: 2019/04/07 09:23:27 by yrabby            #+#    #+#             */
+/*   Updated: 2019/04/20 19:51:42 by yrabby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstnew(void const *content, size_t content_size)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	t_list	*new;
+	char	*new;
+	int		size;
+	int		a;
 
-	new = (t_list*)malloc(sizeof(*new));
-	if (new == NULL)
+	if (!s1 || !s2)
 		return (NULL);
-	if (content != NULL)
+	size = ft_strlen(s1) + ft_strlen(s2);
+	if (!(new = (char*)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	size = 0;
+	a = 0;
+	while (s1[size])
 	{
-		new->content = (void*)ft_memalloc(sizeof(void) * (content_size + 1));
-		if (new->content == NULL)
-			return (NULL);
-		ft_memcpy(new->content, content, content_size + 1);
-		new->content_size = content_size;
+		new[size] = s1[size];
+		size++;
 	}
-	else
+	while (s2[a])
 	{
-		new->content = NULL;
-		new->content_size = 0;
+		new[size + a] = s2[a];
+		a++;
 	}
-	new->next = NULL;
+	new[size + a] = '\0';
 	return (new);
 }
