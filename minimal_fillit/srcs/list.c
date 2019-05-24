@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 static point		add_point(int x, int y, point *max)
 {
@@ -30,7 +31,7 @@ static point		add_point(int x, int y, point *max)
 	return (p);
 }
 
-static void			lowest_p(point *p)
+void			lowest_p(point *p)
 {
 	int i;
 	int a;
@@ -58,28 +59,32 @@ static void			lowest_p(point *p)
 	}
 }
 
-static point		*make_point_arry(int fd, point loc)
+static point		*make_point_arry(int fd)
 {
 	point	*p;
 	int		n;
 	char	*line;
+	int x = 0;
+	int y = 0;
 
 	if ((get_next_line(fd, &line)) == 0)
 		return (NULL);
 	n = -1;
+	printf("%s\n", line);
 	if (!(p = (point*)malloc(sizeof(point) * 5)))
 		return (NULL);
-	while (loc.y < 4)
+	while (y < 4)
 	{
-		while (line[loc.x])
+		while (x < 4)
 		{
-			if (line[loc.x] == '#' && n++ < 6)
-				p[n] = add_point(loc.x, loc.y, &p[4]);
-			loc.x++;
+			if (line[x] == '#' && n++ < 6)
+				p[n] = add_point(x, y, &p[4]);
+			x++;
 		}
-		loc.y++;
-		loc.x = 0;
+		y++;
+		x = 0;
 		get_next_line(fd, &line);
+		printf("%s\n", line);
 	}
 	lowest_p(p);
 	return (p);
@@ -102,15 +107,12 @@ t_shape				*make_list(int fd)
 {
 	t_shape	*start;
 	point	*p;
-	point	loc;
 
-	loc.x = 0;
-	loc.y = 0;
 	if (!(start = (t_shape*)malloc(sizeof(t_shape))))
 		return (NULL);
 	start->next = NULL;
-	start->p = make_point_arry(fd, loc);
-	while ((p = make_point_arry(fd, loc)) != NULL)
+	start->p = make_point_arry(fd);
+	while ((p = make_point_arry(fd)) != NULL)
 		add_end(start, p);
 	return (start);
 }

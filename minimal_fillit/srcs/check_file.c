@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 static void		if_exit(void)
 {
@@ -63,6 +64,7 @@ int				check_file(int fd)
 		{
 			check_line_len(line);
 			check_bad_char(line);
+			printf("%s\n", line);
 			free(line);
 			ok = get_next_line(fd, &line);
 			count++;

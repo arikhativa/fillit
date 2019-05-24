@@ -12,27 +12,15 @@
 
 NAME = fillit
 
-SRC = $(addprefix srcs/, $(addsuffix .c, \
-	main \
-	list \
-	check_file \
-	square \
-	add_shapes\
-	ft_putchar \
-	ft_putstr \
-	ft_strsub \
-	ft_strdup \
-	ft_strlen \
-	ft_strdel \
-	ft_strnew \
-	ft_strjoin \
-	ft_strchr \
-	ft_memalloc \
-	ft_bzero \
-	get_next_line))
+SRC = $(addsuffix .c, main list \
+	  check_file square add_shapes)
 
-HED = -I includes
+HED = fillit.h
 
+LIB_HED = -I libft/includes
+
+LIB = libft/libft.a
+	  
 CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
@@ -52,14 +40,19 @@ OK = echo "$(GREEN) -- OK$(RESET)"
 
 all: $(NAME)
 
-$(NAME): Makefile $(SRC)
+$(LIB):
+		@cd libft; make
+
+$(NAME): Makefile $(HED) $(SRC) $(LIB)
 		@echo " -- Compiling fillit..."
-		@$(CC) $(CFLAGS) $(SRC) $(HED) -o $(NAME)
+		@$(CC) $(CFLAGS) $(LIB) $(SRC) $(HED) $(LIB_HED) -o $(NAME)
 		@$(OK)
 
 clean:
+		@cd libft; make clean
 
 fclean:
+		@cd libft; make fclean
 		@/bin/rm -f $(NAME)
 
 re: fclean all
