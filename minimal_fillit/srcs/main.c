@@ -61,6 +61,9 @@ void	print_list(t_shape *start)
 
 int	main(int ac, char **av)
 {
+	//char *line;
+
+
 	int		fd;
 	t_shape		*start;
 	int		nbr;
@@ -70,6 +73,19 @@ int	main(int ac, char **av)
 		write(1, "usage - pls 1 arg\n", 19);
 	else if ((fd = open(av[1], O_RDONLY)) != -1)
 	{
+		/*while (get_next_line(fd, &line) > 0)
+		{
+			printf("%s\n", line);
+			free(line);
+		}
+		close(fd);
+		fd = open(av[1], O_RDONLY);
+		while (get_next_line(fd, &line) > 0)
+		{
+			printf("%s\n", line);
+			free(line);
+		}*/
+
 		nbr = check_file(fd);
 		close(fd);
 		printf("%d\n", nbr);
