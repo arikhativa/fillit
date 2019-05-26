@@ -13,19 +13,20 @@
 #include "fillit.h"
 #include <stdio.h>
 
-static void		if_exit(void)
+void		if_exit(void)
 {
 	write(1, "error\n", 6);
 	exit(EXIT_FAILURE);
 }
 
-static void		check_new_line(char *line)
+int		check_new_line(char *line)
 {
 	if (line[0] != '\0')
 		if_exit();
+	return (0);
 }
 
-static void		check_line_len(char *line)
+void		check_line_len(char *line)
 {
 	int len;
 
@@ -34,7 +35,7 @@ static void		check_line_len(char *line)
 		if_exit();
 }
 
-static void		check_bad_char(char *line)
+void		check_bad_char(char *line)
 {
 	int i;
 
@@ -64,15 +65,15 @@ int				check_file(int fd)
 		{
 			check_line_len(line);
 			check_bad_char(line);
-			printf("%s\n", line);
-			free(line);
+			ft_strdel(&line);
 			ok = get_next_line(fd, &line);
 			count++;
 		}
-		i = 0;
 		if (ok != 0)
-			check_new_line(line);
+			i = check_new_line(line);
+		ft_strdel(&line);
 	}
-	free(line);
+	if (i == 0)
+		if_exit();
 	return (count);
 }

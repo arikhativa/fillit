@@ -67,10 +67,9 @@ static point		*make_point_arry(int fd)
 	int x = 0;
 	int y = 0;
 
-	if ((get_next_line(fd, &line)) == 0)
+	if ((get_next_line(fd, &line)) <= 0)
 		return (NULL);
 	n = -1;
-	printf("%s\n", line);
 	if (!(p = (point*)malloc(sizeof(point) * 5)))
 		return (NULL);
 	while (y < 4)
@@ -83,9 +82,10 @@ static point		*make_point_arry(int fd)
 		}
 		y++;
 		x = 0;
+		ft_strdel(&line);
 		get_next_line(fd, &line);
-		printf("%s\n", line);
 	}
+	ft_strdel(&line);
 	lowest_p(p);
 	return (p);
 }

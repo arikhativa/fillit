@@ -67,14 +67,14 @@ $(OBJ):
 
 $(OBJS): $(SRCS)
 	@echo "$(PURPLE) -- Compiling srcs..."
-	$(CC) $(CFLAGS) -c $(SRCS) $(HED)
+	@$(CC) $(CFLAGS) -c $(SRCS) $(HED)
 	@$(OK)
 	@/bin/mkdir -p $(OBJ_DIR)
 	@/bin/mv $(OBJ) $(OBJ_DIR)
 
 $(NAME): Makefile $(OBJS)
 	@echo "$(PURPLE) -- Linking fillit..."
-	$(CC) $(CFLAGS) $(OBJS) $(HED) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(HED) -o $(NAME)
 	@$(OK)
 
 clean:

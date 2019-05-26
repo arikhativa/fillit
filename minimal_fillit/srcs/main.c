@@ -34,7 +34,7 @@ void		extra_main(t_shape *start, int nbr)
 	while (!(add_shape(start, 'A', tab, nbr)))
 	{
 		nbr++;
-		free(tab);
+		ft_strdel(tab);
 		tab = make_square(nbr);
 	}
 	print_tab(tab);
@@ -61,7 +61,7 @@ void	print_list(t_shape *start)
 
 int	main(int ac, char **av)
 {
-	//char *line;
+//	char *line;
 
 
 	int		fd;
@@ -73,6 +73,10 @@ int	main(int ac, char **av)
 		write(1, "usage - pls 1 arg\n", 19);
 	else if ((fd = open(av[1], O_RDONLY)) != -1)
 	{
+		nbr = check_file(fd);
+		close(fd);
+		fd = open(av[1], O_RDONLY);
+
 		/*while (get_next_line(fd, &line) > 0)
 		{
 			printf("%s\n", line);
@@ -86,16 +90,12 @@ int	main(int ac, char **av)
 			free(line);
 		}*/
 
-		nbr = check_file(fd);
-		close(fd);
-		printf("%d\n", nbr);
-		fd = open(av[1], O_RDONLY);
 		start = make_list(fd);
-		print_list(start);
-		/*nbr = square_size(nbr);
-		  extra_main(start, nbr);*/
+		//print_list(start);
+		nbr = square_size(nbr);
+		extra_main(start, nbr);
 	}
 	else
-		write(1, "error\n", 6);
+		write(1, "bad file\n", 9);
 	return (0);
 }
