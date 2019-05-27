@@ -61,9 +61,6 @@ void	print_list(t_shape *start)
 
 int	main(int ac, char **av)
 {
-//	char *line;
-
-
 	int		fd;
 	t_shape		*start;
 	int		nbr;
@@ -76,24 +73,7 @@ int	main(int ac, char **av)
 		nbr = check_file(fd);
 		close(fd);
 		fd = open(av[1], O_RDONLY);
-
-		/*while (get_next_line(fd, &line) > 0)
-		{
-			printf("%s\n", line);
-			free(line);
-		}
-		close(fd);
-		fd = open(av[1], O_RDONLY);
-		while (get_next_line(fd, &line) > 0)
-		{
-			printf("%s\n", line);
-			free(line);
-		}*/
-
-		//printf("%d\n", nbr);
-
 		start = make_list(fd);
-		//print_list(start);
 		nbr = square_size(nbr);
 		extra_main(start, nbr);
 	}

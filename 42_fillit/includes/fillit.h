@@ -35,7 +35,6 @@ int				square_size(int nbr);
 char			**make_square(int size);
 int				add_shape(t_shape *elem, char c, char **tab, int size);
 
-//del
 void			print_tab(char **tab);
 
 #endif

@@ -15,14 +15,13 @@
 
 void		if_exit(char *str)
 {
-	int i;
+	//int i;
 
-	i = ft_strlen(str);
+	//i = ft_strlen(str);
 
-	if (i > 99999)
-		printf("%s\n", str);
 
 	write(1, "error\n", 6);
+	printf("%s\n", str);
 	exit(EXIT_FAILURE);
 }
 
@@ -75,10 +74,10 @@ void		check_good_shape(char *shape)
 			if ((i < 15) && ((i + 1) % 4 != 0))
 				if (shape[i + 1] == '#')
 					ok = 1;
-			if ((i - 4) > 0)
+			if ((i - 4) >= 0)
 				if (shape[i - 4] == '#')
 					ok = 1;
-			if ((i + 4) < 15)
+			if ((i + 4) <= 15)
 				if (shape[i + 4] == '#')
 					ok = 1;
 			if (ok != 1)
