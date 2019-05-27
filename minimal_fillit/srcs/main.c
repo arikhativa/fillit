@@ -90,6 +90,8 @@ int	main(int ac, char **av)
 			free(line);
 		}*/
 
+		//printf("%d\n", nbr);
+
 		start = make_list(fd);
 		//print_list(start);
 		nbr = square_size(nbr);
