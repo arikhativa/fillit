@@ -16,7 +16,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include "libft.h"
-
 typedef struct	s_point
 {
 	int			x;
@@ -30,12 +29,10 @@ typedef struct	s_shape
 }				t_shape;
 
 t_shape			*make_list(int fd);
-int				check_file(int fd);
-int				square_size(int nbr);
+int			check_file(int fd);
+int			square_size(int nbr);
 char			**make_square(int size);
-int				add_shape(t_shape *elem, char c, char **tab, int size);
-
-//del
+int			add_shape(t_shape *elem, char c, char **tab, int size);
 void			print_tab(char **tab);
 
 #endif

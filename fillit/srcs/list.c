@@ -31,7 +31,7 @@ static point		add_point(int x, int y, point *max)
 	return (p);
 }
 
-void			lowest_p(point *p)
+static void			lowest_p(point *p)
 {
 	int i;
 	int a;

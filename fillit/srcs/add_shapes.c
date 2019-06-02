@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 static int		check_empty(t_shape *elem, char **tab, int size, point p)
 {

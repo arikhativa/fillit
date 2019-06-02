@@ -17,20 +17,7 @@ SRC = $(addsuffix .c, \
       list \
       check_file \
       square \
-      add_shapes\
-      ft_putchar \
-      ft_putstr \
-      ft_strsub \
-      ft_strdup \
-      ft_strlen \
-      ft_strdel \
-      ft_strnew \
-      ft_strjoin \
-      ft_strchr \
-      ft_memalloc \
-      ft_bzero \
-      get_next_line)
-
+      add_shapes)
 
 OBJ = $(SRC:.c=.o)
 
@@ -41,6 +28,8 @@ OBJ_DIR = objs
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(OBJ))
+
+LIB = libft/libft.a
 
 HED = -I includes
 
@@ -65,24 +54,28 @@ all: $(NAME)
 
 $(OBJ):
 
+$(LIB):
+	@cd libft; make
+
 $(OBJS): $(SRCS)
-	@echo "$(PURPLE) -- Compiling srcs..."
+	@echo "$(PURPLE) -- Compiling fillit srcs..."
 	@$(CC) $(CFLAGS) -c $(SRCS) $(HED)
 	@$(OK)
 	@/bin/mkdir -p $(OBJ_DIR)
 	@/bin/mv $(OBJ) $(OBJ_DIR)
 
-$(NAME): Makefile $(OBJS)
+$(NAME): Makefile $(LIB) $(OBJS)
 	@echo "$(PURPLE) -- Linking fillit..."
-	@$(CC) $(CFLAGS) $(OBJS) $(HED) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIB) $(HED) -o $(NAME)
 	@$(OK)
 
 clean:
-	@echo "$(YELLOW) -- Cleaning..."
+	@cd libft; make clean
 	@/bin/rm -rf $(OBJ_DIR)
-	@$(OK)
 
-fclean: clean
+fclean:
+	@cd libft; make fclean
+	@/bin/rm -rf $(OBJ_DIR)
 	@/bin/rm -f $(NAME)
 
 re: fclean all

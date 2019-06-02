@@ -17,78 +17,81 @@ void		if_exit(char *str)
 {
 	int i;
 
-	i = ft_strlen(str);
-
-	if (i > 99999)
-		printf("%s\n", str);
 
 	write(1, "error\n", 6);
+	if (!(str))
+		return ;
+	i = ft_strlen(str);
+	write(1, str, i);
 	exit(EXIT_FAILURE);
 }
 
-int		check_new_line(char *line)
+static int		check_new_line(char *line)
 {
 	if (line[0] != '\0')
-		if_exit("new line");
+		if_exit("missing new line after sqware");
 	return (0);
 }
 
-void		check_line_len(char *line)
+static void		check_line_len(char *line)
 {
 	int len;
 
 
 	len = ft_strlen(line);
 	if (len != 4)
-		if_exit("line len");
+		if_exit("line len is not 4");
 }
 
-void		check_bad_char(char *line)
+static void		check_bad_char(char *line)
 {
 	int i;
 
 	i = 0;
-	while (line[i] && line[i] != '\n')
+	while (line[i])
 	{
-		if (i != 4 && line[i] == '\n')
-			if_exit("new line bad place");
 		if (line[i] != '#' && line[i] != '.')
-			if_exit("bad char");
+			if_exit("bad char. char must be '.' or '#'");
 		i++;
 	}
 }
 
-void		check_good_shape(char *shape)
+static void		check_good_shape(char *shape)
 {
 	int i;
 	int ok;
+	int ash;
 
 	i = -1;
 	ok = 0;
+	ash = 0;
 	while (shape[++i])
 	{
 		if (shape[i] == '#')
 		{
+			ash++;
+			if (ash > 4)
+				if_exit("the shape is not legal - too many '#'");
 			if ((i > 0) && (i % 4 != 0))
 				if (shape[i - 1] == '#')
 					ok = 1;
 			if ((i < 15) && ((i + 1) % 4 != 0))
 				if (shape[i + 1] == '#')
 					ok = 1;
-			if ((i - 4) > 0)
+			if ((i - 4) >= 0)
 				if (shape[i - 4] == '#')
 					ok = 1;
-			if ((i + 4) < 15)
+			if ((i + 4) <= 15)
 				if (shape[i + 4] == '#')
 					ok = 1;
 			if (ok != 1)
-				if_exit("bad_shape");
+				if_exit("the shape is not legal - parts are not conected");
 		}
 		ok = 0;
 	}
 }
 
-int		make_shape(char *line)
+static int		make_shape(char *line)
 {
 	static char	*shape;
 	char		*tmp;
@@ -96,10 +99,10 @@ int		make_shape(char *line)
 	if (shape == NULL)
 	{
 		if(!(shape = ft_strnew(1)))
-			if_exit("make_shpe");
+			if_exit("memory problem");
 	}
 	if (!(tmp = ft_strjoin(shape, line)))
-		if_exit("make_shape2");
+		if_exit("memory problem");
 	ft_strdel(&shape);
 	shape = tmp;
 	if (ft_strlen(shape) == 16)
@@ -110,8 +113,6 @@ int		make_shape(char *line)
 	}
 	return (0);
 }
-
-
 
 int				check_file(int fd)
 {
@@ -138,6 +139,6 @@ int				check_file(int fd)
 		ft_strdel(&line);
 	}
 	if (i == 0)
-		if_exit("new line at the end");
+		if_exit("problem with the last line of the file");
 	return (count * 4);
 }

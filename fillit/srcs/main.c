@@ -26,76 +26,53 @@ void		print_tab(char **tab)
 	}
 }
 
-void		extra_main(t_shape *start, int nbr)
-{
-	char	**tab;
+// code for printing the list
+/*
+   void	print_list(t_shape *start)
+   {
+   int nbr = 0;
 
-	tab = make_square(nbr);
-	while (!(add_shape(start, 'A', tab, nbr)))
-	{
-		nbr++;
-		ft_strdel(tab);
-		tab = make_square(nbr);
-	}
-	print_tab(tab);
-}
-
-void	print_list(t_shape *start)
-{
-	int nbr = 0;
-
-	while (start != NULL)
-	{
-		while (nbr < 4)
-		{
-			printf("%d,%d\n", start->p[nbr].x, start->p[nbr].y);
-			nbr++;
-		}
-		printf("max:\n");
-		printf("%d,%d\n", start->p[4].x, start->p[4].y);
-		printf("\n");
-		nbr = 0;
-		start = start->next;
-	}
-}
+   while (start != NULL)
+   {
+   while (nbr < 4)
+   {
+   printf("%d,%d\n", start->p[nbr].x, start->p[nbr].y);
+   nbr++;
+   }
+   printf("max:\n");
+   printf("%d,%d\n", start->p[4].x, start->p[4].y);
+   printf("\n");
+   nbr = 0;
+   start = start->next;
+   }
+   }*/
 
 int	main(int ac, char **av)
 {
-//	char *line;
-
-
 	int		fd;
 	t_shape		*start;
 	int		nbr;
+	char		**tab;
 
 	nbr = 0;
 	if (ac != 2)
-		write(1, "usage - pls 1 arg\n", 19);
+		write(1, "usage - run with one argument\n", 30);
 	else if ((fd = open(av[1], O_RDONLY)) != -1)
 	{
 		nbr = check_file(fd);
 		close(fd);
 		fd = open(av[1], O_RDONLY);
-
-		/*while (get_next_line(fd, &line) > 0)
-		{
-			printf("%s\n", line);
-			free(line);
-		}
-		close(fd);
-		fd = open(av[1], O_RDONLY);
-		while (get_next_line(fd, &line) > 0)
-		{
-			printf("%s\n", line);
-			free(line);
-		}*/
-
-		//printf("%d\n", nbr);
-
 		start = make_list(fd);
-		//print_list(start);
 		nbr = square_size(nbr);
-		extra_main(start, nbr);
+		tab = make_square(nbr);
+		while (!(add_shape(start, 'A', tab, nbr)))
+		{
+			nbr++;
+			ft_strdel(tab);
+			tab = make_square(nbr);
+		}
+		print_tab(tab);
+
 	}
 	else
 		write(1, "bad file\n", 9);
